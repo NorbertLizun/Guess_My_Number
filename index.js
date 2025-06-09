@@ -1,10 +1,14 @@
 'use strict'
 
+const number = document.querySelector(".number");
+const message = document.querySelector(".message");
+const body = document.querySelector("body");
+const scoreElement = document.querySelector(".score");
+const highscoreElement = document.querySelector(".highscore");
+
 let secretNumber = generateRandomNumber();
 let score = 20;
 let highscore = 0;
-
-console.log(secretNumber)
 
 document.querySelector(".check").addEventListener("click", handleGuessNumber)
 document.querySelector(".again").addEventListener("click", resetGame)
@@ -22,45 +26,44 @@ function handleGuessNumber() {
 }
 
 const handleEmptyGuess = function () {
-    document.querySelector(".message").textContent = "⛔ No number!"
+    message.textContent = "⛔ No number!"
 }
 
 const handleGoodGuess = function () {
-    document.querySelector(".number").textContent = secretNumber;
-    document.querySelector(".message").textContent = "🥳 Correct number!"
-    document.querySelector("body").style.backgroundColor = "#60b347";
-    document.querySelector(".number").style.width = "30rem";
+    number.textContent = secretNumber;
+    message.textContent = "🥳 Correct number!"
+    body.style.backgroundColor = "#60b347";
+    number.style.width = "30rem";
     handleHighscore();
 }
 
 const handleHighscore = function () {
     if (score > highscore) {
         highscore = score;
-        document.querySelector(".highscore").textContent = highscore;
+        highscoreElement.textContent = highscore;
     }
 }
 
 const handleWrongGuess = function (message) {
     if (score > 1) {
         score--;
-        document.querySelector(".score").textContent = score;
-        document.querySelector(".message").textContent = message
+        scoreElement.textContent = score;
+        message.textContent = message
     } else {
-        document.querySelector("body").style.backgroundColor = "#e34234";
-        document.querySelector(".score").textContent = 0;
-        document.querySelector(".message").textContent = "😵 You lost the game!"
+        body.style.backgroundColor = "#e34234";
+        scoreElement.textContent = 0;
+        message.textContent = "😵 You lost the game!"
     }
 }
 
 function resetGame() {
     score = 20;
     secretNumber = generateRandomNumber();
-    console.log(secretNumber)
-    document.querySelector(".score").textContent = score;
-    document.querySelector(".number").textContent = "?";
-    document.querySelector(".message").textContent = "Start guessing..."
-    document.querySelector("body").style.backgroundColor = "#222";
-    document.querySelector(".number").style.width = "15rem";
+    scoreElement.textContent = score;
+    number.textContent = "?";
+    message.textContent = "Start guessing..."
+    body.style.backgroundColor = "#222";
+    number.style.width = "15rem";
     document.querySelector(".guess").value = "";
 }
 
