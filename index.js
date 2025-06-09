@@ -1,8 +1,8 @@
 'use strict'
 
-const number = document.querySelector(".number");
-const message = document.querySelector(".message");
-const body = document.querySelector("body");
+const numberElement = document.querySelector(".number");
+const messageElement = document.querySelector(".message");
+const bodyElement = document.querySelector("body");
 const scoreElement = document.querySelector(".score");
 const highscoreElement = document.querySelector(".highscore");
 
@@ -26,14 +26,14 @@ function handleGuessNumber() {
 }
 
 const handleEmptyGuess = function () {
-    message.textContent = "⛔ No number!"
+    messageElement.textContent = "⛔ No number!"
 }
 
 const handleGoodGuess = function () {
-    number.textContent = secretNumber;
-    message.textContent = "🥳 Correct number!"
-    body.style.backgroundColor = "#60b347";
-    number.style.width = "30rem";
+    numberElement.textContent = secretNumber;
+    messageElement.textContent = "🥳 Correct number!"
+    bodyElement.style.backgroundColor = "#60b347";
+    numberElement.style.width = "30rem";
     handleHighscore();
 }
 
@@ -48,11 +48,11 @@ const handleWrongGuess = function (message) {
     if (score > 1) {
         score--;
         scoreElement.textContent = score;
-        message.textContent = message
+        messageElement.textContent = message
     } else {
-        body.style.backgroundColor = "#e34234";
+        bodyElement.style.backgroundColor = "#e34234";
         scoreElement.textContent = 0;
-        message.textContent = "😵 You lost the game!"
+        messageElement.textContent = "😵 You lost the game!"
     }
 }
 
@@ -60,10 +60,10 @@ function resetGame() {
     score = 20;
     secretNumber = generateRandomNumber();
     scoreElement.textContent = score;
-    number.textContent = "?";
-    message.textContent = "Start guessing..."
-    body.style.backgroundColor = "#222";
-    number.style.width = "15rem";
+    numberElement.textContent = "?";
+    messageElement.textContent = "Start guessing..."
+    bodyElement.style.backgroundColor = "#222";
+    numberElement.style.width = "15rem";
     document.querySelector(".guess").value = "";
 }
 
